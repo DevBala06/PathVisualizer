@@ -8,12 +8,16 @@
 }
 
 
-
+body{
+  background-color: black;
+}
 
 @layer components {
   @media (min-width: 1024px) { /* lg breakpoint */
+  
     #nd-nav {
-      width: 100vw !important;
+      max-width: 100%;
+      width: 100% !important;
       border: none !important;
       border-bottom: 1px solid rgb(48, 48, 48) !important;
       border-radius: 0px !important;
