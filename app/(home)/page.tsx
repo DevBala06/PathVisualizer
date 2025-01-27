@@ -1,19 +1,18 @@
-import Link from 'next/link';
+import Footer from "../components/Footer";
+import { GridBackground } from "../components/GridBackground";
+// import Navbar from "../components/Navbar";
 
-export default function HomePage() {
+export default function Home() {
   return (
-    <main className="flex flex-1 flex-col justify-center text-center">
-      <h1 className="mb-4 text-2xl font-bold">Hello World</h1>
-      <p className="text-fd-muted-foreground">
-        You can open{' '}
-        <Link
-          href="/docs"
-          className="text-fd-foreground font-semibold underline"
-        >
-          /docs
-        </Link>{' '}
-        and see the documentation.
-      </p>
-    </main>
+    <>
+    <div className="h-[95vh]">
+    {/* <Navbar/> */}
+    <GridBackground/>
+    </div>
+    <div className="h-[100vh] bg-black">
+      <Footer/>
+      </div>
+    
+    </>
   );
 }

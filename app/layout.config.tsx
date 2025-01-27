@@ -1,4 +1,5 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
+import NavLinks from './components/NavLinks';
 
 /**
  * Shared layout configurations
@@ -7,16 +8,22 @@ import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
  * Home Layout: app/(home)/layout.tsx
  * Docs Layout: app/docs/layout.tsx
  */
+
+
+
 export const baseOptions: BaseLayoutProps = {
   nav: {
     // can be JSX too!
-    title: 'My App',
+    title: (
+      <h1 className=" text-2xl font-semibold">
+        PathVisualizer<span className="text-sm ">.io</span></h1>
+    ),
   },
   links: [
     {
-      text: 'Documentation',
-      url: '/docs',
-      active: 'nested-url',
-    },
+      type:'custom',
+      children:<NavLinks/>  
+      },
+    
   ],
 };

@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  @media (min-width: 1024px) { /* lg breakpoint */
+    #nd-nav {
+      width: 100vw !important;
+      border: none !important;
+      border-bottom: 1px solid rgb(48, 48, 48) !important;
+      border-radius: 0px !important;
+      position: fixed !important;
+      top: -8px !important;
+      
+      /* background-color: black !important; */
+      padding: 3px !important;
+    }
+  }
+}
