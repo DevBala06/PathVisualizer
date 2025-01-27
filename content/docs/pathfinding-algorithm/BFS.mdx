@@ -1,0 +1,109 @@
+---
+title: "BFS Algorithm"
+subtitle: "Understanding the Basics of Pathfinding Algorithms"
+author: "Balaji Munusamy"
+date: "2025-01-27"
+---
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
+import Image from '../../../app/assets/bfs.png'
+
+# Breadth-First Search (BFS): A Comprehensive Overview
+
+Breadth-First Search (BFS) is a fundamental algorithm for traversing or searching through a graph. It explores nodes level by level, starting from the root or a given starting node. BFS is widely used for various applications such as finding the shortest path in unweighted graphs, network broadcasting, and more.
+
+## How BFS Algorithm Works
+
+BFS explores a graph by visiting nodes in layers, with each layer representing nodes that are one step farther from the starting node.
+
+### BFS Process:
+
+1. **Start at the root node**: The algorithm begins by enqueueing the start node into a queue.
+2. **Explore neighbors**: The first node in the queue is dequeued, and its neighbors are added to the queue if they haven't been visited yet.
+3. **Repeat**: This process continues until all nodes in the graph are visited, or the goal node is found.
+
+BFS guarantees the shortest path in an unweighted graph, as it explores all nodes at a current depth before moving to the next depth.
+
+## Algorithm for BFS
+
+Below is the **Algorithm** for BFS:
+
+```text
+// BFS Algorithm
+1. Initialize an empty queue and a visited list
+2. Enqueue the starting node into the queue and mark it as visited
+3. While the queue is not empty:
+    a) Dequeue the first node, called currentNode
+    b) Process currentNode (this could be printing the node, checking for goal, etc.)
+    c) For each unvisited neighbor of currentNode:
+        i) Enqueue the neighbor to the queue
+        ii) Mark the neighbor as visited
+4. Return the visited nodes or the path if goal is reached
+```
+
+# Breadth-First Search (BFS)
+
+BFS is a simple and effective graph traversal algorithm. It explores a graph layer by layer, ensuring that all nodes at the current depth are explored before moving on to the next level. It is particularly effective for finding the shortest path in unweighted graphs.
+
+## Explanation of Pseudo Code
+
+1. **Initialization**:
+   - Start by creating an empty queue and a visited list.
+   - Enqueue the start node and mark it as visited.
+   
+2. **While Loop**:
+   - The algorithm continues as long as there are nodes in the queue.
+   - Dequeue the front node and process it. For example, print the node or check if it's the goal node.
+   - For each neighbor of the current node, if it has not been visited yet, enqueue it and mark it as visited.
+
+3. **Goal Check**:
+   - If the goal node is found during the traversal, you can stop and return the path or the node.
+   - Otherwise, the algorithm will continue until the queue is empty, meaning all reachable nodes have been visited.
+
+### Example Application of BFS
+
+To better understand how BFS works, consider a graph where you are trying to find the shortest path from node A to node D.
+
+```
+Graph:
+A -- B -- D
+|    |
+C -- E
+```
+
+- Start at node A, enqueue it and mark it visited.
+- Dequeue A and explore its neighbors: B and C.
+- Enqueue B and C, mark them visited.
+- Dequeue B, explore its neighbors: A (already visited) and D.
+- Enqueue D, mark it visited. Since D is the goal, the algorithm stops.
+
+## Visualizing BFS
+
+Here's an image illustrating how BFS explores the graph. Zoom into the image to see each step of the traversal in detail.
+```text
+Example 1:
+Input:
+```
+<ImageZoom width={300} height={300} src={Image} alt="BFS_algorithm"/>
+```text
+Output: 1 2 5 3 4
+```
+## Key Features of BFS
+
+- **Completeness**: BFS will always find the solution if one exists, provided the graph is finite.
+- **Optimality**: In an unweighted graph, BFS guarantees that the first time a node is visited, it is reached by the shortest path.
+- **Memory Usage**: BFS may require significant memory to store the queue and visited list, especially in large graphs.
+
+## Applications of BFS
+
+BFS has a wide range of applications, including:
+
+- **Shortest Path in Unweighted Graphs**: BFS is often used to find the shortest path between two nodes in an unweighted graph.
+- **Web Crawlers**: BFS can be used to crawl the web by visiting all pages (nodes) level by level.
+- **Network Broadcasting**: BFS is used in network protocols to broadcast messages to all nodes in a network.
+- **Social Networks**: BFS is used to analyze social connections, like finding the shortest connection between two people.
+
+## Conclusion
+
+Breadth-First Search (BFS) is a fundamental algorithm with numerous practical applications, particularly in scenarios where you need to explore nodes layer by layer. It guarantees finding the shortest path in an unweighted graph and is simple to implement. While it may require a significant amount of memory for large graphs, its completeness and optimality make it a powerful tool in graph traversal.
+
+For more detailed insights into BFS, refer to the [Wikipedia page on BFS](https://en.wikipedia.org/wiki/Breadth-first_search) and the [GeeksforGeeks article on BFS](https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/).

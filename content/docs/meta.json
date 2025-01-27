@@ -1,0 +1,10 @@
+{
+  "pages": [
+    "---Introduction---",
+    "index",
+    "---Pathfinding Algorithm---",
+    "./pathfinding-algorithm/Introduction",
+    "./pathfinding-algorithm/A_star-algorithm",
+    "./pathfinding-algorithm/BFS"
+  ]
+}

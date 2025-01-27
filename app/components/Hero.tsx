@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 const Hero = () => {
+  
   return (
     <>
     <div className='h-[70%] w-[90vw] mt-24  mx-auto flex flex-col items-center justify-center  '>

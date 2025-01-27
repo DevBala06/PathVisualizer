@@ -25,7 +25,7 @@ const Footer = () => {
 
             </div>
         </div>
-      <div className="container mx-auto flex gap-x-20 items-start  w-[80%]">
+      <div className="container mx-auto flex gap-x-20 items-start  w-[90%]">
         {/* Company Section */}
         <div>
           <h2 className="text-xl font-bold mb-4">Company</h2>

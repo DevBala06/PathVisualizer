@@ -1,0 +1,119 @@
+---
+title: "A* Algorithm"
+subtitle: "Understanding the Basics of Pathfinding Algorithms"
+author: "Balaji Munusamy"
+date: "2025-01-27"
+---
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
+import Image from '../../../app/assets/image.png'
+
+# A* Algorithm: An In-Depth Exploration
+
+The A* (A-star) algorithm is a widely used pathfinding and graph traversal method in computer science. It efficiently finds the shortest path from a starting node to a goal node by combining the benefits of Dijkstra's algorithm and greedy best-first search. This combination allows A* to effectively navigate large and complex graphs, making it a preferred choice in various applications.
+
+## How A* Algorithm Works
+
+A* operates by evaluating nodes based on two key components:
+
+1. **g(n)**: The exact cost from the start node to the current node n.
+2. **h(n)**: A heuristic estimate of the cost from node n to the goal.
+
+The algorithm selects the node with the lowest value of f(n) = g(n) + h(n) for expansion. This approach ensures that A* explores the most promising paths first, leading to an efficient search process.
+
+## Algorith, for A* Algorithm
+
+Below is the **Algorithm** for the A* algorithm:
+
+```text
+// A* Search Algorithm
+1.  Initialize the open list
+2.  Initialize the closed list
+    put the starting node on the open 
+    list (you can leave its f at zero)
+3.  while the open list is not empty
+    a) find the node with the least f on 
+       the open list, call it "q"
+    b) pop q off the open list
+  
+    c) generate q's 8 successors and set their 
+       parents to q
+   
+    d) for each successor
+        i) if successor is the goal, stop search
+        
+        ii) else, compute both g and h for successor
+          successor.g = q.g + distance between 
+                              successor and q
+          successor.h = distance from goal to 
+          successor (This can be done using many 
+          ways, we will discuss three heuristics- 
+          Manhattan, Diagonal and Euclidean 
+          Heuristics)
+          
+          successor.f = successor.g + successor.h
+        iii) if a node with the same position as 
+            successor is in the OPEN list which has a 
+           lower f than successor, skip this successor
+        iV) if a node with the same position as 
+            successor  is in the CLOSED list which has
+            a lower f than successor, skip this successor
+            otherwise, add  the node to the open list
+     end (for loop)
+  
+    e) push q on the closed list
+    end (while loop)
+```
+# A* Algorithm
+
+The A* (A-star) algorithm is a popular pathfinding and graph traversal algorithm that combines the benefits of Dijkstra's Algorithm and Greedy Best-First-Search to find the shortest path from a starting node to a goal node while considering potential costs.
+
+## Explanation of Pseudo Code
+
+The algorithm begins by initializing the open set, which contains the start node, and sets the `gScore` and `fScore` of the start node.
+
+The algorithm proceeds as follows:
+
+- The `while` loop continues as long as there are nodes in the open set to explore.
+- The node with the lowest `fScore` is selected for exploration.
+- If the selected node is the goal, the algorithm reconstructs and returns the path from the start to the goal using the `cameFrom` dictionary.
+- If the node is not the goal, the algorithm evaluates all its neighbors, calculates the `tentative_gScore`, and updates the `gScore`, `fScore`, and `cameFrom` map if necessary.
+- If a neighbor hasn't been evaluated before, it is added to the open set for future exploration.
+- If the open set is empty and no path exists, the algorithm returns failure.
+
+### Reconstruct Path
+
+This function traces the path from the goal node back to the start node using the `cameFrom` dictionary and returns the reversed path.
+
+## Visualizing the A* Algorithm
+
+To better understand how A* works, here's an image illustrating the process of A* navigating a grid. You can zoom into the image to inspect each step in more detail.
+<ImageZoom width={500} height={500} src={Image} alt="A*_algorithm"/>
+
+## Key Features of A*
+
+- **Optimality**: When used with an admissible heuristic (one that never overestimates the true cost), A* is guaranteed to find the shortest path.
+- **Completeness**: A* will always find a solution if one exists, provided the search space is finite.
+- **Efficiency**: By using heuristics, A* can significantly reduce the number of nodes it needs to explore compared to uninformed search algorithms.
+
+## Applications of A*
+
+A* is versatile and has been applied in various domains:
+
+- **Navigation Systems**: Used in GPS devices and mapping applications to find optimal routes.
+- **Robotics**: Helps robots navigate environments, avoid obstacles, and efficiently reach target locations.
+- **Video Games**: Enables AI-controlled characters to move realistically within game worlds.
+- **Network Routing**: Assists in determining the most efficient data transmission paths in computer networks.
+
+## Variants of A*
+
+Several variants of the A* algorithm have been developed to address specific challenges:
+
+- **Iterative Deepening A* (IDA*)**: Combines the space efficiency of depth-first search with the optimality of A*.
+- **Bidirectional A***: Searches from both the start and goal nodes simultaneously to reduce search time.
+- **Memory-Bounded A***: Designed to operate within limited memory constraints.
+
+## Conclusion
+
+The A* algorithm stands out as a powerful and efficient tool for pathfinding and graph traversal. Its combination of optimality, completeness, and efficiency makes it suitable for a wide range of applications, from navigation systems to robotics and video games. Understanding A* and its variants is essential for developing systems that require effective and efficient pathfinding solutions.
+
+For a more detailed exploration of the A* algorithm, you can refer to the [Wikipedia page on A* search algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm) and the [GeeksforGeeks article on A* Search Algorithm](https://www.geeksforgeeks.org/a-search-algorithm/).

@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  
+  --navbar-bg: rgba(0, 0, 0, 0.751); /* 60% opacity */
+}
+
+
+
+
 @layer components {
   @media (min-width: 1024px) { /* lg breakpoint */
     #nd-nav {
@@ -11,9 +19,11 @@
       border-radius: 0px !important;
       position: fixed !important;
       top: -8px !important;
+      background-color: var(--navbar-bg);
+      /* backdrop-filter: blur(100px); Adjust the blur strength  */
       
       /* background-color: black !important; */
-      padding: 3px !important;
+      padding: 5px !important;
     }
   }
 }
