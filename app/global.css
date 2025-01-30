@@ -8,9 +8,7 @@
 }
 
 
-body{
-  background-color: black;
-}
+
 
 @layer components {
   @media (min-width: 1024px) { /* lg breakpoint */
