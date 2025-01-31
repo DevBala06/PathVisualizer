@@ -1,4 +1,4 @@
-import { useScroll, useTransform, motion } from 'framer-motion';
+import { useScroll, useTransform, motion, MotionValue } from 'framer-motion';
 import React, { useRef } from 'react';
 
 interface ParagraphProps {
@@ -29,7 +29,7 @@ const Paragraph: React.FC<ParagraphProps> = ({ paragraph }) => {
 
 interface WordProps {
   children: string;
-  progress: any;
+  progress: MotionValue<number>;
   range: [number, number];
 }
 
@@ -50,7 +50,7 @@ const Word: React.FC<WordProps> = ({ children, progress, range }) => {
 
 interface CharProps {
   children: string;
-  progress: any;
+  progress: MotionValue<number>;
   range: [number, number];
 }
 
