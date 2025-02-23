@@ -10,14 +10,14 @@ import About from "../components/About";
 export default function Home() {
   return (
     <>
-    <div className="h-[95vh]">
+    <div className="h-[95vh] bg-black">
     {/* <Navbar/> */}
     <GridBackground Component={Hero}/>
     </div>
     <div>
     <About/>    
     </div>
-    <div className="h-[100vh] bg-black">
+    <div className="h-[100vh]  bg-black">
       <Footer/>
       </div>
     

@@ -15,7 +15,7 @@ export const baseOptions: BaseLayoutProps = {
   nav: {
     // can be JSX too!
     title: (
-      <h1 className="ml-2 text-2xl font-semibold">
+      <h1 className="ml-2 text-2xl text-zinc-100 font-semibold">
         PathVisualizer<span className="text-sm ">.io</span>
       </h1>
     ),

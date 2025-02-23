@@ -7,7 +7,7 @@ const Hero = () => {
     <>
     <div className='h-[70%] w-[90vw] mt-24  mx-auto flex flex-col items-center justify-center  '>
     <div className='flex flex-col items-center'>
-       <div className='max-sm:text-xl sm:text-4xl lg:text-6xl font-bold flex items-center flex-col select-none '>
+       <div className='max-sm:text-xl sm:text-4xl lg:text-6xl dark:text-white text-white font-bold flex items-center flex-col select-none '>
        <h1>The Pathfinding Learning <span className='text-teal-400 inline'>Framework</span> </h1>
 <span className='mt-3'>for Web</span>
        </div>

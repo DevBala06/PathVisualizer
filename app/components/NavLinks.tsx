@@ -28,7 +28,7 @@ const NavLinks = () => {
         <Link
           key={i}
           href={link.href}
-          className={`${pathname === link.href ? "text-zinc-100" : "text-zinc-500 "}font-medium flex items-start text-sm hover:text-zinc-100`}
+          className={`${pathname === link.href ? "text-zinc-100" : "text-zinc-500 "}font-medium text-zinc-100 flex items-start text-sm hover:text-zinc-100`}
         >
           {link.label}
           <span className={`${pathname === link.href ? "hidden" : ""}`}>
