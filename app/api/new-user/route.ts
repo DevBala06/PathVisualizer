@@ -16,7 +16,8 @@ export const GET = async () => {
     } catch (error:unknown) {
         console.error("Error fetching users:", error);
         return NextResponse.json({
-            message: "Failed to fetch users", error: error.message
+            error: error instanceof Error ? error.message : "Unknown error",
+            message: "Failed to fetch users"
         }, { status: 500 });
     }
 };
@@ -55,7 +56,8 @@ export const POST = async (request: Request) => {
     } catch (error: unknown) {
         console.error("Error creating user:", error);
         return NextResponse.json({
-            message: "Failed to create user", error: error.message
+            message: "Failed to create user", 
+            error: error instanceof Error ? error.message : "Unknown error",
         }, { status: 500 });
     }
 };
