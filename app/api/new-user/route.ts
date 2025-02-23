@@ -13,7 +13,7 @@ export const GET = async () => {
             users
         }, { status: 200 });
 
-    } catch (error:any) {
+    } catch (error:unknown) {
         console.error("Error fetching users:", error);
         return NextResponse.json({
             message: "Failed to fetch users", error: error.message
@@ -52,7 +52,7 @@ export const POST = async (request: Request) => {
             user,
         }, { status: 201 });
     
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error creating user:", error);
         return NextResponse.json({
             message: "Failed to create user", error: error.message
