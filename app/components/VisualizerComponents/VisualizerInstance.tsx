@@ -35,7 +35,7 @@ const Visualizer = ({ id }: { id: number }) => {
 
   return (
     <div className="border border-gray-700 rounded-lg shadow-lg p-4 bg-[#131416]">
-      <h2 className="text-white text-lg mb-2">Instance {id}</h2>
+      {/* <h2 className="text-white text-lg mb-2">Instance {id}</h2> */}
 
       <PathfindingProvider>
         <TileProvider>
