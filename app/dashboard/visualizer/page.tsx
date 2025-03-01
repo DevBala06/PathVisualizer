@@ -8,6 +8,7 @@ const VisualizerDashboard = () => {
     {/* Header (Non-Scrollable) */}
     <div className="border-b border-stone-200 p-3">
       <h1 className="font-bold">Visualizer Overview</h1>
+      <h3 className='font-semibold text-xs'>{`${'"'}Experiment with Scenarios. Compare Outcomes.${'"'}`}</h3>
     </div>
 
     {/* Scrollable Content */}

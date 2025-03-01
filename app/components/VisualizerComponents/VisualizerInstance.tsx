@@ -34,15 +34,15 @@ const Visualizer = ({ id }: { id: number }) => {
   
 
   return (
-    <div className="border border-gray-700 rounded-lg shadow-lg p-4 bg-[#131416]">
+    <div className="shadow-lg px-2 bg-[#111111]">
       {/* <h2 className="text-white text-lg mb-2">Instance {id}</h2> */}
 
       <PathfindingProvider>
         <TileProvider>
           <SpeedProvider>
-            <div className="h-[500px] w-full flex flex-col">
-              <Nav isVisualizationRunningRef={isVisualizationRunningRef} />
+            <div className="flex h-full">
               <Grid tabId={id.toString()} isVisualizationRunningRef={isVisualizationRunningRef} />
+              <Nav isVisualizationRunningRef={isVisualizationRunningRef} />
             </div>
           </SpeedProvider>
         </TileProvider>

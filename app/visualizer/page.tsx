@@ -8,12 +8,12 @@ const Visualizer = () => {
   const { tabs, activeTab } = useTabStore();
 
   return (
-    <div className="h-screen w-screen flex flex-col  bg-gray-950 text-white">
+    <div className="h-screen w-screen flex flex-col bg-[#191919]  text-white">
       {/* Chrome-Like Tab Bar */}
       <TabBar />
 
       {/* Active Visualizer Instance */}
-      <div className="p-4 flex-1 ">
+      <div className="bg-[#4a4b4b6c] flex-1 ">
         {tabs.map((tab) =>
           tab.id === activeTab ? <VisualizerInstance key={tab.id} id={tab.id} /> : null
         )}
