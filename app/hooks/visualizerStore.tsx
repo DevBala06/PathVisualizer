@@ -24,6 +24,7 @@ interface TabStore {
 }
 
 export const useTabStore = create<TabStore>((set, get) => ({
+  
   tabs: [
     {
       id: 1,

@@ -1,3 +1,4 @@
+"use client"
 import {
   ClerkProvider,
 } from "@clerk/nextjs";
@@ -7,6 +8,9 @@ import { RootProvider } from "fumadocs-ui/provider";
 import { Space_Grotesk } from "next/font/google";
 
 import type { ReactNode } from "react";
+import { PathfindingProvider } from "./context/PathfindingContext";
+import { TileProvider } from "./context/TileContext";
+import { SpeedProvider } from "./context/SpeedContext";
 
 // const inter = Inter({
 //   subsets: ['latin'],
@@ -20,6 +24,7 @@ const spaceGrotesk = Space_Grotesk({
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <ClerkProvider>
+      
       <html
         lang="en"
         className={spaceGrotesk.className}
@@ -27,8 +32,14 @@ export default function Layout({ children }: { children: ReactNode }) {
       >
         <body className="flex flex-col min-h-screen">
           <RootProvider>
+            <PathfindingProvider>
+              <TileProvider>
+                <SpeedProvider>
             
             {children}
+            </SpeedProvider>
+            </TileProvider>
+            </PathfindingProvider>
           </RootProvider>
         </body>
       </html>

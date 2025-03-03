@@ -7,13 +7,13 @@ const TabBar = () => {
   const { tabs, activeTab, addTab, removeTab, setActiveTab } = useTabStore();
 
   return (
-    <div className="flex bg-transparent  items-center  text-white ml-2 mt-2 ">
+    <div className="flex   items-center bg-[#111111] text-white border-b border-neutral-800 ">
       {/* Tabs */}
       {tabs.map((tab) => (
         <div
           key={tab.id}
-          className={`flex gap-2 items-center px-2 py-1 rounded-t-lg cursor-pointer
-            ${activeTab === tab.id ? "bg-[#4a4b4b6c] hover:bg-gray-700" : ""}`}
+          className={`flex gap-2 items-center  px-2 py-1 cursor-pointer
+            ${activeTab === tab.id ? " border bg-[#191919] border-neutral-800 border-t-2 border-t-blue-800 hover:bg-[#0a0a0a]" : " hover:bg-[#191919]  border border-neutral-800"}`}
           onClick={() => setActiveTab(tab.id)}
         >
           <span className="text-sm text-neutral-200">{tab.title}</span>

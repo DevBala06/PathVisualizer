@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { Dispatch, ReactNode, RefObject, SetStateAction, createContext, useRef, useState } from "react";
 import { AlgorithmType, GridType, MazeType } from "../utils/types";
 import { createGrid } from "../utils/helpers";
 import {
@@ -7,6 +7,9 @@ import {
 } from "../utils/constants";
 
 interface PathfindingContextInterface {
+  isVisualizationRunningRef:RefObject<boolean>
+  isOpen:boolean;
+  setIsOpen:Dispatch<SetStateAction<boolean>>;
   algorithm: AlgorithmType;
   setAlgorithm: (algorithm: AlgorithmType) => void;
   maze: MazeType;
@@ -22,6 +25,9 @@ export const PathfindingContext = createContext<
 >(undefined);
 
 export const PathfindingProvider = ({ children }: { children: ReactNode }) => {
+    const isVisualizationRunningRef = useRef(false);
+  
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [algorithm, setAlgorithm] = useState<AlgorithmType>("BFS");
   const [maze, setMaze] = useState<MazeType>("NONE");
   const [grid, setGrid] = useState<GridType>(
@@ -40,6 +46,9 @@ export const PathfindingProvider = ({ children }: { children: ReactNode }) => {
         setGrid,
         isGraphVisualized,
         setIsGraphVisualized,
+        isOpen,
+        setIsOpen,
+        isVisualizationRunningRef,
       }}
     >
       {children}
