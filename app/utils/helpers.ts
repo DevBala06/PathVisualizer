@@ -69,6 +69,31 @@ export const checkStack = (tile: TileType, stack: TileType[]) => {
   return false;
 };
 
+export function updateStartOrEndTile(
+  grid: GridType,
+  newRow: number,
+  newCol: number,
+  isDraggingStart: boolean,
+  isDraggingEnd: boolean
+): GridType {
+  return grid.map((row) =>
+    row.map((tile) => {
+      if (tile.isStart && isDraggingStart) {
+        return { ...tile, isStart: false };
+      }
+      if (tile.isEnd && isDraggingEnd) {
+        return { ...tile, isEnd: false };
+      }
+      if (tile.row === newRow && tile.col === newCol) {
+        return { ...tile, isStart: isDraggingStart, isEnd: isDraggingEnd };
+      }
+      return tile;
+    })
+  );
+}
+
+
+
 export const dropFromQueue = (tile: TileType, queue: TileType[]) => {
   for (let i = 0; i < queue.length; i++) {
     if (isEqual(tile, queue[i])) {

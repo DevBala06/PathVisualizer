@@ -2,7 +2,7 @@ import { twMerge } from "tailwind-merge";
 import { MAX_COLS, MAX_ROWS } from "../../utils/constants";
 import { Tile } from "./Tile";
 import { RefObject, useEffect, useState } from "react";
-import { checkIfStartOrEnd, createNewGrid } from "../../utils/helpers";
+import { createNewGrid, updateStartOrEndTile } from "../../utils/helpers";
 import { usePathfindingStore } from "@/app/hooks/usePathfindingConfig";
 
 export function Grid({
@@ -12,37 +12,68 @@ export function Grid({
   isVisualizationRunningRef: RefObject<boolean>;
   tabId: string;
 }) {
-  const { gridConfigs, initializeConfig, setGrid } = usePathfindingStore();
+  const {
+    gridConfigs,
+    initializeConfig,
+    setGrid,
+    setStartTile,
+    setEndTile,
+  } = usePathfindingStore();
   const [isMouseDown, setIsMouseDown] = useState(false);
+  const [isDraggingStart, setIsDraggingStart] = useState(false);
+  const [isDraggingEnd, setIsDraggingEnd] = useState(false);
 
-  // Initialize config when tabId changes
   useEffect(() => {
     initializeConfig(tabId);
   }, [tabId, initializeConfig]);
 
   const config = gridConfigs[tabId] || {};
-  const grid = config.grid || []; // Ensure grid exists
+  const grid = config.grid || [];
 
-  const handleMouseDown = (row: number, col: number) => {
-    if (isVisualizationRunningRef.current || checkIfStartOrEnd(row, col)) {
-      return;
+  const handleMouseDown = (
+    row: number,
+    col: number,
+    isStart: boolean,
+    isEnd: boolean
+  ) => {
+    if (isVisualizationRunningRef.current) return;
+
+    if (isStart) {
+      setIsDraggingStart(true);
+    } else if (isEnd) {
+      setIsDraggingEnd(true);
+    } else {
+      setIsMouseDown(true);
+      const newGrid = createNewGrid(grid, row, col);
+      setGrid(tabId, newGrid);
     }
-
-    setIsMouseDown(true);
-    const newGrid = createNewGrid(grid, row, col);
-    setGrid(tabId, newGrid);
   };
 
   const handleMouseUp = () => {
     setIsMouseDown(false);
+    setIsDraggingStart(false);
+    setIsDraggingEnd(false);
   };
 
   const handleMouseEnter = (row: number, col: number) => {
-    if (isVisualizationRunningRef.current || checkIfStartOrEnd(row, col)) {
-      return;
-    }
+    if (isVisualizationRunningRef.current) return;
 
-    if (isMouseDown) {
+    if (isDraggingStart || isDraggingEnd) {
+      const newGrid = updateStartOrEndTile(
+        grid,
+        row,
+        col,
+        isDraggingStart,
+        isDraggingEnd
+      );
+      setGrid(tabId, newGrid);
+      // Merge the new coordinates with the current tile data to form a complete TileType
+      if (isDraggingStart) {
+        setStartTile(tabId, { ...config.startTile, row, col });
+      } else if (isDraggingEnd) {
+        setEndTile(tabId, { ...config.endTile, row, col });
+      }
+    } else if (isMouseDown) {
       const newGrid = createNewGrid(grid, row, col);
       setGrid(tabId, newGrid);
     }
@@ -61,7 +92,8 @@ export function Grid({
       {grid.map((r, rowIndex) => (
         <div key={rowIndex} className="flex">
           {r.map((tile, tileIndex) => {
-            const { row, col, isEnd, isStart, isPath, isTraversed, isWall } = tile;
+            const { row, col, isEnd, isStart, isPath, isTraversed, isWall } =
+              tile;
             return (
               <Tile
                 key={tileIndex}
@@ -72,7 +104,9 @@ export function Grid({
                 isPath={isPath}
                 isTraversed={isTraversed}
                 isWall={isWall}
-                handleMouseDown={() => handleMouseDown(row, col)}
+                handleMouseDown={() =>
+                  handleMouseDown(row, col, isStart, isEnd)
+                }
                 handleMouseUp={handleMouseUp}
                 handleMouseEnter={() => handleMouseEnter(row, col)}
               />

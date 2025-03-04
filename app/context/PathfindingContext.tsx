@@ -7,9 +7,11 @@ import {
 } from "../utils/constants";
 
 interface PathfindingContextInterface {
-  isVisualizationRunningRef:RefObject<boolean>
+  isVisualizationRunningRef:RefObject<boolean>;
   isOpen:boolean;
   setIsOpen:Dispatch<SetStateAction<boolean>>;
+  tabId:string;
+  setTabId:Dispatch<SetStateAction<string>>;
   algorithm: AlgorithmType;
   setAlgorithm: (algorithm: AlgorithmType) => void;
   maze: MazeType;
@@ -28,6 +30,7 @@ export const PathfindingProvider = ({ children }: { children: ReactNode }) => {
     const isVisualizationRunningRef = useRef(false);
   
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [tabId,setTabId]=useState<string>("");
   const [algorithm, setAlgorithm] = useState<AlgorithmType>("BFS");
   const [maze, setMaze] = useState<MazeType>("NONE");
   const [grid, setGrid] = useState<GridType>(
@@ -49,6 +52,8 @@ export const PathfindingProvider = ({ children }: { children: ReactNode }) => {
         isOpen,
         setIsOpen,
         isVisualizationRunningRef,
+        tabId,
+        setTabId,
       }}
     >
       {children}

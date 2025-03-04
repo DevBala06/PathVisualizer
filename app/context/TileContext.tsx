@@ -17,6 +17,7 @@ export const TileContext = createContext<TileContextInterface | undefined>(
 );
 
 export const TileProvider = ({ children }: { children: ReactNode }) => {
+  
   const [startTile, setStartTile] = useState<TileType>(
     START_TILE_CONFIGURATION
   );

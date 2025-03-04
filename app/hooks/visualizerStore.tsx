@@ -36,7 +36,7 @@ export const useTabStore = create<TabStore>((set, get) => ({
 
   addTab: () =>
     set((state) => {
-      const newId = Date.now();
+      const newId = state.activeTab+1;
       return {
         tabs: [
           ...state.tabs,
@@ -50,12 +50,22 @@ export const useTabStore = create<TabStore>((set, get) => ({
       };
     }),
 
-  removeTab: (id) =>
-    set((state) => {
-      const newTabs = state.tabs.filter((tab) => tab.id !== id);
-      const newActiveTab = newTabs.length ? newTabs[newTabs.length - 1].id : -1;
-      return { tabs: newTabs, activeTab: newActiveTab };
-    }),
+    removeTab: (id) =>
+      set((state: TabStore) => {
+        const newTabs = state.tabs.filter((tab) => tab.id !== id);
+        console.log(newTabs)
+        let newActiveTab = state.activeTab;
+        console.log(newActiveTab)
+        if (state.activeTab === id) {
+          newActiveTab = newTabs.length > 0 ? newTabs[0].id : 0; // or null if you prefer
+        } 
+        return { tabs: newTabs, activeTab: 1 };
+      }),
+    
+    
+    
+    
+    
 
   setActiveTab: (id) => set({ activeTab: id }),
 

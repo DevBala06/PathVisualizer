@@ -45,7 +45,7 @@ const Visualizer = ({ id }: { id: number }) => {
               <Grid tabId={id.toString()} isVisualizationRunningRef={isVisualizationRunningRef} />
 
               </div>
-              <Nav isVisualizationRunningRef={isVisualizationRunningRef} />
+              <Nav tabId={id.toString()} isVisualizationRunningRef={isVisualizationRunningRef} />
             </div>
         
     </div>
