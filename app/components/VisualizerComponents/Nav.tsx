@@ -38,6 +38,7 @@ console.log(config)
 
   // Destructure the necessary properties from the config.
   const { algorithm, grid, isGraphVisualized, maze, startTile, endTile } = config;
+  console.log(startTile);
 
   const handleGenerateMaze = (maze: MazeType) => {
     if (maze === "NONE") {
@@ -47,6 +48,7 @@ console.log(config)
     }
     setMaze(tabId, maze);
     setIsDisabled(true);
+    console.log(speed)
     runMazeAlgorithm({ maze, grid, startTile, endTile, setIsDisabled, speed });
     setGrid(tabId, grid.slice());
     setIsGraphVisualized(tabId, false);

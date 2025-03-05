@@ -29,3 +29,4 @@ export const runPathfindingAlgorithm = ({
       return bfs(grid, startTile, endTile);
   }
 };
+

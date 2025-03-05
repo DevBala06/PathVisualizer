@@ -14,6 +14,7 @@ const Paragraph: React.FC<ParagraphProps> = ({ paragraph }) => {
 
   const words = paragraph.split(" ");
   return (
+    <>
     <p 
       ref={container}         
       className="flex flex-wrap selection:bg-teal-400 selection:text-black text-3xl font-medium  leading-none px-10 py-8 max-w-screen-2xl text-white"
@@ -21,9 +22,16 @@ const Paragraph: React.FC<ParagraphProps> = ({ paragraph }) => {
       {words.map((word, i) => {
         const start = i / words.length;
         const end = start + 1 / words.length;
-        return <Word key={i} progress={scrollYProgress} range={[start, end]}>{word}</Word>;
+        return (
+        
+        <Word key={i} progress={scrollYProgress} range={[start, end]}>{word}</Word>
+
+        );
       })}
     </p>
+    {/* <h1 className='text-4xl -mt-6 text-lime-300 font-bold'>That's why we built PathVisulaizer.io</h1> */}
+    
+    </>
   );
 };
 
