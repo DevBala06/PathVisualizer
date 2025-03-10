@@ -4,8 +4,8 @@ export const MAX_ROWS = 29;
 export const MAX_COLS = 59;
 
 export const START_TILE_CONFIGURATION = {
-  row: 0,
-  col: 0,
+  row: 1,
+  col: 1,
   isEnd: false,
   isWall: false,
   isPath: false,
@@ -16,8 +16,8 @@ export const START_TILE_CONFIGURATION = {
 };
 
 export const END_TILE_CONFIGURATION = {
-  row: MAX_ROWS - 1,
-  col: MAX_COLS - 1,
+  row: MAX_ROWS - 2,
+  col: MAX_COLS - 2,
   isEnd: false,
   isWall: false,
   isPath: false,

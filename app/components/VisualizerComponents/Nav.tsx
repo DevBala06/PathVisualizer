@@ -55,11 +55,12 @@ console.log(config)
   };
 
   const handlerRunVisualizer = () => {
-    if (isGraphVisualized) {
-      setIsGraphVisualized(tabId, false);
-      resetGrid({ grid: grid.slice(), startTile, endTile });
-      return;
-    }
+  if (isGraphVisualized) {
+    setIsGraphVisualized(tabId, false);
+    resetGrid({ grid: grid.slice(), startTile, endTile });
+    return;
+  }
+    
 
     const { traversedTiles, path } = runPathfindingAlgorithm({
       algorithm,
@@ -67,6 +68,18 @@ console.log(config)
       startTile,
       endTile,
     });
+
+      console.log("Traversestile: ",traversedTiles)
+      console.log("Path: ",path)
+      if(traversedTiles.length && path.length === 1){
+        alert("Graph cannot be traversed diagonally!!");
+        setIsGraphVisualized(tabId, false);
+    resetGrid({ grid: grid.slice(), startTile, endTile });
+    return;
+      }
+      
+
+
 
     animatePath(traversedTiles, path, startTile, endTile, speed);
     setIsDisabled(true);
