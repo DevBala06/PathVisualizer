@@ -7,6 +7,7 @@ import About from "../components/About";
 import Features from "../components/Features";
 import { HoverBorderGradient } from "../components/ui/hover-border-gradient";
 import { Sparkles } from "lucide-react";
+import PricingSection from "../components/Pricing";
 // import Navbar from "../components/Navbar";
 
 
@@ -31,6 +32,9 @@ export default function Home() {
       </div>
       
       <Features/>
+    </div>
+    <div>
+      <PricingSection/>
     </div>
     <div className="h-[100vh]  bg-black">
       <Footer/>
