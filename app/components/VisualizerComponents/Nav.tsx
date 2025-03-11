@@ -1,3 +1,4 @@
+"use client"
 import { RefObject,  useState } from "react";
 import { motion } from "framer-motion";
 import { usePathfinding } from "@/app/hooks/usePathfinding";
@@ -16,8 +17,11 @@ import { runMazeAlgorithm } from "@/app/utils/runMazeAlgorithm";
 import { PlayButton } from "./PlayButton";
 import { runPathfindingAlgorithm } from "@/app/utils/runPathfindingAlgorithm";
 import { animatePath } from "@/app/utils/animatePath";
-import { X } from "lucide-react";
+import { Save, X } from "lucide-react";
 import { usePathfindingStore } from "@/app/hooks/usePathfindingConfig";
+import { useUser } from "@clerk/nextjs";
+import axios from "axios";
+import {toast} from "react-toastify"
 
 export function Nav({
   isVisualizationRunningRef,
@@ -28,6 +32,8 @@ export function Nav({
 }) {
   // Call all hooks unconditionally at the top.
   const [isDisabled, setIsDisabled] = useState(false);
+  const { user } = useUser();
+
   const { isOpen, setIsOpen } = usePathfinding();
   const { speed, setSpeed } = useSpeed();
   const { gridConfigs, setMaze, setGrid, setIsGraphVisualized, setAlgorithm } = usePathfindingStore();
@@ -39,6 +45,30 @@ console.log(config)
   // Destructure the necessary properties from the config.
   const { algorithm, grid, isGraphVisualized, maze, startTile, endTile } = config;
   console.log(startTile);
+
+
+
+  const handleSave = async () => {
+    try {
+      const res = await axios.post("/api/save-grid", {
+        clerkId: user?.id,
+        tabId,
+        algorithm: algorithm,
+        maze: maze,
+        grid: grid,
+        isGraphVisualized: isGraphVisualized,
+        startTile: startTile,
+        endTile: endTile,
+      });
+
+      if (res.status === 200) {
+        toast.success("Grid configuration saved successfully");
+      }
+    } catch (error) {
+      console.error("Failed to save grid:", error);
+      toast.error("Failed to save grid configuration");
+    }
+  };
 
   const handleGenerateMaze = (maze: MazeType) => {
     if (maze === "NONE") {
@@ -150,6 +180,11 @@ console.log(config)
               buttonText="Start Simulation"
               className="bg-green-600 text-white font-semibold p-2"
             />
+            <div className="flex gap-2 items-center justify-center bg-black rounded-lg p-2">
+              <h1 className="text-base text white">Save</h1>
+              <Save onClick={handleSave} className="w-4 h-4 cursor-pointer text-neutral-300 hover:text-neutral-100" />
+            </div>
+             
           </div>
         </motion.div>
       )}

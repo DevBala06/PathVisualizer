@@ -34,6 +34,16 @@ export default function Home() {
       <Features/>
     </div>
     <div>
+      <div className="flex justify-center items-center">
+<HoverBorderGradient >
+      <div className="flex items-center gap-x-2">
+    <Sparkles className="w-4 h-4 text-yellow-300" />
+    <h1 className="text-xs">Pricing</h1>
+  </div>
+      </HoverBorderGradient>
+
+      </div>
+    
       <PricingSection/>
     </div>
     <div className="h-[100vh]  bg-black">

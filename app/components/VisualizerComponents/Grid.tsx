@@ -4,6 +4,9 @@ import { Tile } from "./Tile";
 import { RefObject, useEffect, useState } from "react";
 import { createNewGrid, updateStartOrEndTile } from "../../utils/helpers";
 import { usePathfindingStore } from "@/app/hooks/usePathfindingConfig";
+import axios from "axios";
+import { toast } from "react-toastify";
+
 
 export function Grid({
   isVisualizationRunningRef,
@@ -24,8 +27,58 @@ export function Grid({
   const [isDraggingEnd, setIsDraggingEnd] = useState(false);
 
   useEffect(() => {
+    const fetchGridConfig = async () => {
+      try {
+        const response = await axios.get(`/api/save-grid?tabId=${tabId}`);
+          toast.info(
+            <div>
+              <p className="text-white font-semibold">
+                Do you want to load your saved grid?
+              </p>
+              <div className="flex gap-3 mt-2">
+                <button
+                  onClick={() => {
+                    setGrid(tabId, response.data.gridConfig.grid);
+                    toast.success("✅ Grid loaded successfully!");
+                  }}
+                  className="bg-green-500 text-white px-3 py-1 rounded"
+                >
+                  Yes, Load Grid
+                </button>
+    
+                <button
+                  onClick={() => toast.info("❌ Grid not loaded.")}
+                  className="bg-red-500 text-white px-3 py-1 rounded"
+                >
+                  No, Keep Current Grid
+                </button>
+              </div>
+            </div>,
+            {
+              position: "top-center",
+              autoClose: false,
+              closeOnClick: false,
+              draggable: false,
+            }
+          );
+console.log(response.data)
+      } catch (error) {
+        console.error("Failed to fetch grid config", error);
+      }
+    };
+    fetchGridConfig();
+
     initializeConfig(tabId);
   }, [tabId, initializeConfig]);
+
+  const loadGridConfig = (gridConfig: any) => {
+    setGrid(tabId, gridConfig.grid);
+    setStartTile(tabId, gridConfig.startTile);
+    setEndTile(tabId, gridConfig.endTile);
+
+    toast.success("✅ Grid Loaded Successfully!", {
+    });
+  };
 
   const config = gridConfigs[tabId] || {};
   const grid = config.grid || [];
@@ -117,3 +170,5 @@ export function Grid({
     </div>
   );
 }
+
+

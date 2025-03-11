@@ -111,17 +111,20 @@ const Card = ({ children }: { children: ReactElement }) => {
               <FaHome className="absolute left-2" onClick={() => router.push("/dashboard/visualizer")} />
             </div>
             <div className="flex items-center gap-1">
+           
               <PlayButton
                 isDisabled={isDisabled}
                 isGraphVisualized={isGraphVisualized}
                 handlerRunVisualizer={handlerRunVisualizer}
               />
+              
               <button
                 className="text-neutral-300 hover:text-neutral-100 hover:bg-[#a1a1aa65] hover:rounded-full"
                 onClick={addTab}
               >
                 <Plus className="scale-75" />
               </button>
+              
               <CiSettings
                 onClick={() => {
                   setIsOpen(!isOpen);
@@ -129,6 +132,7 @@ const Card = ({ children }: { children: ReactElement }) => {
                 }}
                 className="text-lg cursor-pointer text-white"
               />
+              
             </div>
           </div>
           {/* Browser Navigation */}
