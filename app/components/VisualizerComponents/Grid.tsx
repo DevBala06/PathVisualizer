@@ -71,14 +71,14 @@ console.log(response.data)
     initializeConfig(tabId);
   }, [tabId, initializeConfig]);
 
-  const loadGridConfig = (gridConfig: any) => {
-    setGrid(tabId, gridConfig.grid);
-    setStartTile(tabId, gridConfig.startTile);
-    setEndTile(tabId, gridConfig.endTile);
+  // const loadGridConfig = (gridConfig: any) => {
+  //   setGrid(tabId, gridConfig.grid);
+  //   setStartTile(tabId, gridConfig.startTile);
+  //   setEndTile(tabId, gridConfig.endTile);
 
-    toast.success("✅ Grid Loaded Successfully!", {
-    });
-  };
+  //   toast.success("✅ Grid Loaded Successfully!", {
+  //   });
+  // };
 
   const config = gridConfigs[tabId] || {};
   const grid = config.grid || [];
